@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+
+build:
+  artifacts:
+
+deploy:
+  helm:
+    releases:
+      - name: pyspider
+        namespace: pyspider
+        chartPath: k8s/pyspider
+        values:
+        setValues:
