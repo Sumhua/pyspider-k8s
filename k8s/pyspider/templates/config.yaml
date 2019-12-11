@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: config
+data:
+  config.json: |2
+          {
+            "taskdb": "mongodb+taskdb://pyspider-mongodb:27017/taskdb",
+            "projectdb": "mongodb+projectdb://pyspider-mongodb:27017/projectdb",
+            "resultdb": "mongodb+resultdb://pyspider-mongodb:27017/resultdb",
+            "message_queue": "redis://pyspider-redis-master:6379/0",
+            "webui": {
+              "need-auth": false,
+              "scheduler-rpc": "http://pyspider-scheduler:23333",
+              "fetcher-rpc": "http://pyspider-fetcher:24444"
+            }
+          }
+

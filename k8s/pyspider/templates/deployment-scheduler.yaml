@@ -1,21 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "pyspider.fullname" . }}
+  name: {{ include "pyspider.fullname" . }}-scheduler
   labels:
-{{ include "pyspider.labels" . | indent 4 }}
+{{ include "pyspider.labels" . | indent 4 }}-scheduler
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.scheduler.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "pyspider.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "pyspider.name" . }}-scheduler
+      app.kubernetes.io/instance: {{ .Release.Name }}-scheduler
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "pyspider.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-
+        app.kubernetes.io/name: {{ include "pyspider.name" . }}-scheduler
+        app.kubernetes.io/instance: {{ .Release.Name }}-scheduler
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -35,7 +34,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
 #          command: []
-          args: ["-c","/opt/config.json","webui"]
+          args: ["-c","/opt/config.json","scheduler"]
           volumeMounts:
             - name: config
               mountPath: /opt/config.json
@@ -43,7 +42,7 @@ spec:
 
           ports:
             - name: http
-              containerPort: 5000
+              containerPort: 23333
               protocol: TCP
 #          livenessProbe:
 #            httpGet:

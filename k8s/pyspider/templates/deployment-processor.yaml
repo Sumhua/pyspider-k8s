@@ -1,21 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "pyspider.fullname" . }}
+  name: {{ include "pyspider.fullname" . }}-processor
   labels:
-{{ include "pyspider.labels" . | indent 4 }}
+{{ include "pyspider.labels" . | indent 4 }}-processor
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.processor.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "pyspider.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "pyspider.name" . }}-processor
+      app.kubernetes.io/instance: {{ .Release.Name }}-processor
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "pyspider.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-
+        app.kubernetes.io/name: {{ include "pyspider.name" . }}-processor
+        app.kubernetes.io/instance: {{ .Release.Name }}-processor
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -35,16 +34,16 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
 #          command: []
-          args: ["-c","/opt/config.json","webui"]
+          args: ["-c","/opt/config.json","processor"]
           volumeMounts:
             - name: config
               mountPath: /opt/config.json
               subPath: config.json
 
           ports:
-            - name: http
-              containerPort: 5000
-              protocol: TCP
+#            - name: http
+#              containerPort: 5000
+#              protocol: TCP
 #          livenessProbe:
 #            httpGet:
 #              path: /
