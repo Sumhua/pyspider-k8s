@@ -22,11 +22,11 @@ service:
   port: 5000
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
   hosts:
     - host: chart-example.local
-      paths: []
+      paths: [/]
 
   tls: []
 
