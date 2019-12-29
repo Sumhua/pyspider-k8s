@@ -45,10 +45,10 @@ spec:
             - name: http
               containerPort: 5000
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
 #          readinessProbe:
 #            httpGet:
 #              path: /

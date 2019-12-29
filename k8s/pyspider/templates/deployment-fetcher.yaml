@@ -41,13 +41,14 @@ spec:
               subPath: config.json
 
           ports:
-#            - name: http
-#              containerPort: 5000
-#              protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+            - name: http
+              containerPort: 24444
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 24444
+            initialDelaySeconds: 10
+            periodSeconds: 10
 #          readinessProbe:
 #            httpGet:
 #              path: /

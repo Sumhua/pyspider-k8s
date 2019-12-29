@@ -20,15 +20,11 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 5000
+  externalIPs:
+    - 192.168.31.92
 
 ingress:
-  enabled: true
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths: [/]
-
-  tls: []
+  enabled: false
 
 resources: {}
 
@@ -37,6 +33,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
 redis:
   cluster:
     enabled: false
@@ -53,8 +50,13 @@ scheduler:
     port: 23333
 
 fetcher:
-  replicaCount: 5
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 24444
+
 processor:
   replicaCount: 1
+
 result:
   replicaCount: 1

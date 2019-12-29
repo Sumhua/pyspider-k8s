@@ -10,5 +10,20 @@ deploy:
       - name: pyspider
         namespace: pyspider
         chartPath: k8s/pyspider
-        values:
-        setValues:
+#        overrides:
+#          service:
+#            type: ClusterIP
+#            port: 7000
+#            externalIPs:
+#              - "192.168.31.91"
+#          pyspider:
+#            service:
+#              externalIPs:
+#                - "192.168.31.92"
+#        values:
+#          service.externalIPs[0]: "192.168.31.91"
+#        setValues:
+#          service.externalIPs[0]: "192.168.31.93"
+#          service.port: 8000
+#          pyspider.service.externalIPs[0]: "192.168.31.93"
+#          pyspider.service.port: 8000

@@ -5,6 +5,12 @@ metadata:
   labels:
 {{ include "pyspider.labels" . | indent 4 }}
 spec:
+  {{- if .Values.service.externalIPs }}
+  externalIPs:
+  {{- range $i, $val := .Values.service.externalIPs }}
+      - {{ $val }}
+  {{ end -}}
+  {{- end }}
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}

@@ -44,10 +44,11 @@ spec:
             - name: http
               containerPort: 23333
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+          livenessProbe:
+            tcpSocket:
+              port: 23333
+            initialDelaySeconds: 10
+            periodSeconds: 10
 #          readinessProbe:
 #            httpGet:
 #              path: /
