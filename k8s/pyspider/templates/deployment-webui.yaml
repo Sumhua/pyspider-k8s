@@ -34,7 +34,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-#          command: []
           args: ["-c","/opt/config.json","webui"]
           volumeMounts:
             - name: config
@@ -49,10 +48,10 @@ spec:
             httpGet:
               path: /
               port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

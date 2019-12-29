@@ -47,12 +47,9 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 23333
-            initialDelaySeconds: 10
-            periodSeconds: 10
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+          readinessProbe:
+            tcpSocket:
+              port: 23333
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

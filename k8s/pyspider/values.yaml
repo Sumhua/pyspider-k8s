@@ -50,7 +50,7 @@ scheduler:
     port: 23333
 
 fetcher:
-  replicaCount: 1
+  replicaCount: 5
   service:
     type: ClusterIP
     port: 24444

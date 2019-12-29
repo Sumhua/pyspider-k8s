@@ -8,7 +8,7 @@ data:
           {
             "taskdb": "mongodb+taskdb://pyspider-mongodb:27017/taskdb",
             "projectdb": "mongodb+projectdb://pyspider-mongodb:27017/projectdb",
-            "resultdb": "mongodb+resultdb://pyspider-mongodb:27017/resultdb",
+            "resultdb": "mongodb+resultdb://fx-mongodb.fx:27017/resultdb",
             "message_queue": "redis://pyspider-redis-master:6379/0",
             "webui": {
               "need-auth": false,
